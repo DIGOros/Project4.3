@@ -1,35 +1,33 @@
 import java.util.Scanner;
 
-
 public class Main {
     public static void main(String[] args) {
-        String input;
-        String answer;
-        int i;
-        String reverse = "";
-        boolean go = true;
         Scanner in = new Scanner(System.in);
 
-        do {
-            System.out.println("Hi there! Please input something");
-            input = in.nextLine();
+        while (true) {
+            System.out.println("Hi there! Please input something:");
+            String input = in.nextLine();
 
-            for (i = input.length() - 1; i >= 0; i--) {
-                reverse = reverse + input.charAt(i);
+            String reversed = reverseString(input);
+            System.out.println("You typed: " + reversed);
 
-            }
+            System.out.println("Do you want to continue? If so, type 'Y' or any other letter to stop:");
+            String continueAnswer = in.nextLine();
 
-
-            System.out.println("You typed: " + reverse);
-            System.out.println("Do you want to continue? If so type Y or type any other letter to stop.");
-            answer = in.nextLine();
-
-
-            if (!(answer.equalsIgnoreCase("y"))) {
+            if (!continueAnswer.equalsIgnoreCase("Y")) {
                 System.out.println("Sad to see you go.");
-                go = false;
+                break;
             }
+        }
 
-        } while (go);
+        in.close(); // Close the scanner when you're done.
+    }
+
+    public static String reverseString(String input) {
+        StringBuilder reversed = new StringBuilder();
+        for (int i = input.length() - 1; i >= 0; i--) {
+            reversed.append(input.charAt(i));
+        }
+        return reversed.toString();
     }
 }
